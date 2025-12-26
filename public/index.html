@@ -7,20 +7,17 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div>
+    <div class="container">
       <h1>Upload an Image</h1>
 
-      <!-- Image file input -->
-      <input type="file" id="imageInput" accept="image/*" />
-
-      <!-- Button to describe the image -->
-      <button id="describeBtn">Describe Image</button>
+      <!-- Wrap input and button together -->
+      <div class="upload-controls">
+        <input type="file" id="imageInput" accept="image/*" />
+        <button id="describeBtn">Describe Image</button>
+      </div>
 
       <!-- Area to show the description -->
-      <pre
-        id="description"
-        style="border: 1px solid #ccc; padding: 10px; width: 500px"
-      ></pre>
+      <div id="description">Description will appear here...</div>
     </div>
 
     <!-- Link to external JS file -->
