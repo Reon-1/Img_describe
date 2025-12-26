@@ -9,6 +9,15 @@ document.getElementById("describeBtn").onclick = async () => {
 
   const reader = new FileReader(); // create a FileReader to read the image
   reader.onload = async () => {
+    //show image preview
+    const previewImg = document.getElementById("previewImg");
+    const imagePreview = document.getElementById("imagePreview");
+    previewImg.src = reader.result;
+    imagePreview.style.display = "block";
+
+    //show loading text
+    document.getElementById("description").textContent = "Analyzing Image...";
+
     // Convert image to base64, remove prefix
     const base64Image = reader.result.split(",")[1];
 

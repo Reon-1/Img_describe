@@ -123,3 +123,15 @@ body {
 #description::-webkit-scrollbar-thumb:hover {
   background: #764ba2;
 }
+
+#imagePreview {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#previewImg {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
