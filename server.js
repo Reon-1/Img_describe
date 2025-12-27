@@ -21,24 +21,31 @@ app.post("/describe", async (req, res) => {
   }
 
   try {
-    // Call Ollama's API instead of command line
+    console.log("Sending image to Ollama...");
+    // Call Ollama's API
     const response = await fetch("http://localhost:11434/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "llava:7b",
-        prompt: "Describe this image in detail.",
-        images: [imageBase64], // Send base64 directly - no temp files needed!
-        stream: false, // Get the full response at once
+        model: "llava:13b", // updated the model
+        prompt:
+          "Analyze this image carefully. Describe everything you observe: the main subjects, their actions, the environment, colors, lighting, any visible text or symbols, spatial relationships between objects, and the overall atmosphere or purpose of the image.",
+        images: [imageBase64], // send base64 directly
+        stream: false, // get the full response at once
       }),
     });
 
+    console.log("Ollama responded with status:", response.status); // see if it worked
+
     // Check if Ollama responded successfully
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Ollama error details:", errorText); // show what went wrong
       throw new Error(`Ollama API error: ${response.statusText}`);
     }
 
     const data = await response.json();
+    console.log("Got description from Ollama!"); // success!
 
     // Send the description back to the frontend
     res.json({ description: data.response });
@@ -50,5 +57,5 @@ app.post("/describe", async (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`); // Fixed the syntax error here!
+  console.log(`Server running on http://localhost:${PORT}`); // fixed syntax
 });

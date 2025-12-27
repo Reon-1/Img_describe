@@ -7,6 +7,12 @@ document.getElementById("describeBtn").onclick = async () => {
     return;
   }
 
+  // check for file type
+  if (!input.type.match("image/(jpeg|jpg|png)")) {
+    alert("Please upload only JPEG, JPG or PNG images!");
+    return;
+  }
+
   const reader = new FileReader(); // create a FileReader to read the image
   reader.onload = async () => {
     //show image preview
